@@ -1,0 +1,131 @@
+/*
+   New Perspectives on HTML and CSS, 7th Edition
+   Tutorial 8
+   Case Problem 3
+
+   Pixal Arts and Entertainment Animation Styles
+   Author: Dylan Kelley
+   Date:   1.4.19
+
+   Filename: paa_animate.css
+   
+   Sprite animation is created using the paa_bat.png, 
+   paa_bfly.png, and paa_fox.png image files.
+   
+   paa_bat.png has 40 frames
+   paa_bfly.png has 34 frames
+   paa_fox.png has 28 frames
+
+*/
+
+
+/* Transition Effects */
+/* This style affects links within the navigation menu with the id of gameLinks, to give them relative positioning with a text color of white and a 5 second transition. */
+nav#gameLinks a {
+   position: relative;
+   color: white;
+   transition: .5s;
+}
+
+/* This style affects hovered links within the navigation menu with the id of gameLinks to set the text to a orangish color. */
+nav#gameLinks a:hover {
+   color: rgb(255, 194, 99);
+}
+
+/* This style creates a gradient-colored bar that gradually expands under each link during the hover event. */
+nav#gameLinks a::after {
+   content: '';
+   position: absolute;
+   top: 100%;
+   left: 0px;
+   width: 0%;
+   height: 8px;
+   background: linear-gradient(to right, rgb(237, 243, 71), rgb(188, 74, 0));
+   border-radius: 4px;
+   opacity: 0;
+   transition: .5s;
+}
+
+/* This style changes the appearance of the bar when it is hovered over. */
+nav#gameLinks a:hover::after {
+   opacity: 1;
+   width: 100%;
+}
+
+
+/* Sprite Styles */
+/* This style rule sets the width and height of division elements with the ID of bat to 40 pixels by 50 pixels, sets the top and left coordinates to 100 pixels and –50 pixels, and displays paa_bat.png as the background image placed at the left center of the background with no tiling and sized to cover the background. */
+div#bat {
+   position: absolute;
+   width: 40px;
+   height: 50px;
+   top: 100px;
+   left: -50px;
+   background: url('paa_bat.png');
+   background-position: left center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   animation: playSprite 2s steps(39) infinite, flyRight 8s linear infinite;
+}
+
+/* This style rule affects the div element with the ID of butterfly, setting the width and height to 35 pixels, the top-left coordinates to 60 pixels and –50 pixels, and using paa_bfly.png as the background image.  */
+div#butterfly {
+   position: absolute;
+   width: 35px;
+   height: 35px;
+   top: 60px;
+   left: -50px;
+   background: url('paa_bfly.png');
+   background-position: left center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   animation: playSprite 1s 3s steps(33) infinite, flyRight 6s cubic-bezier(0, 1, 0.73, 0) infinite;
+}
+
+/* This style rule affects the div element with the ID of fox, setting the width and height to 280 and 260 pixels, the bottom and right coordinates to 10 pixels, and using the paa_fox.png file as the background image.  */
+div#fox {
+   position: absolute;
+   width: 280px;
+   height: 260px;
+   bottom: 10px;
+   right: 10px;
+   background: url('paa_fox.png');
+   background-position: left center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   animation: playSprite 3.5s 4s steps(27) infinite;
+}
+
+
+/* Animation Styles */
+/* This is an animation named playSprite that sets the background image position to right center at 100% time. */
+@keyframes playSprite {
+
+   100% {
+      background-position: right center;
+   }
+}
+
+/* This is an animation named flyRight with key frames to set the top coordinate to 150 pixels at 25% time, set the top coordinate to 55 pixels at 50% time, set the top coordinate to 120 pixels at 65% time, set the top coordinate to 50 pixels at 90% time, and at 100% time, set the top and left coordinates to 80 pixels and 100%. */
+@keyframes flyRight {
+   25% {
+      top: 150px;
+   }
+
+   50% {
+      top: 55px;
+   }
+
+   65% {
+      top: 120px;
+   }
+
+   90% {
+      top: 50px;
+   }
+
+   100% {
+      top: 80px;
+      left: 100%;
+   }
+}
